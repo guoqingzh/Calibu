@@ -1,6 +1,6 @@
 if( NOT ANDROID )
     add_subdirectory( calib )
-    add_subdirectory( modelio )
+    #add_subdirectory( modelio )
     add_subdirectory( grid-gen )
 endif()
 

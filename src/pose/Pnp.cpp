@@ -63,7 +63,7 @@ vector<int> PosePnPRansac(
             // const Eigen::Vector2d center = cam.Unmap(img_pts[i]);
             const Eigen::Vector3d & c3d = ideal_pts[ideal_point_id];
             cv_img.push_back(cv::Point2f(center.x(), center.y()));
-            cv_obj.push_back(cv::Point3f(c3d.x(), c3d.y(), c3d.z()));
+	    cv_obj.push_back(cv::Point3f(c3d.x(), c3d.y(), c3d.z()));
             idx_vec.push_back(i);
         }
     }

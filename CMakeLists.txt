@@ -16,6 +16,8 @@ set(CALIBU_VERSION ${CALIBU_VERSION_MAJOR}.${CALIBU_VERSION_MINOR})
 option(BUILD_APPLICATIONS "Build Applications" ON)
 option(BUILD_SHARED_LIBS "Build Shared Library" ON)
 
+add_definitions(-DSOPHUS_USE_BASIC_LOGGING)
+
 option(BUILD_MATLAB "Build MATLAB wrappers." OFF)
 if(BUILD_MATLAB)
   find_package( MATLAB QUIET )
@@ -196,17 +198,17 @@ target_link_libraries( calibu ${LINK_LIBS} )
 
 # install everything
 install_package(
-    PKG_NAME Calibu
-    LIB_NAME calibu
-    VERSION 0.2
-    DESCRIPTION "Computer vision camera model library."
-#    INSTALL_HEADERS ${HEADERS}
-    INSTALL_INCLUDE_DIR true
-    INSTALL_GENERATED_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/include/calibu/config.h
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
-    INCLUDE_DIRS ${USER_INC}
-    LINK_LIBS ${LINK_LIBS}
-    )
+   PKG_NAME Calibu
+   LIB_NAME calibu
+   VERSION 0.2
+   DESCRIPTION "Computer vision camera model library."
+    INSTALL_HEADERS ${HEADERS}
+   INSTALL_INCLUDE_DIR true
+   INSTALL_GENERATED_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/include/calibu/config.h
+   DESTINATION ${CMAKE_INSTALL_PREFIX}
+   INCLUDE_DIRS ${USER_INC}
+   LINK_LIBS ${LINK_LIBS}
+   )
 
 if( BUILD_APPLICATIONS )
   set( Calibu_DIR ${CMAKE_CURRENT_BINARY_DIR} ) # so subdirs can call find_package( Calibu )
