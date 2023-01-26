@@ -6,13 +6,13 @@ include_directories( ${Pangolin_INCLUDE_DIRS} )
 
 # git clone https://ceres-solver.googlesource.com/ceres-solver
 list(APPEND SEARCH_HEADERS ${EIGEN3_INCLUDE_DIR}) # Help Ceres find Eigen
-find_package( Ceres 1.6.0 QUIET )
+find_package( Ceres 2.0.0 REQUIRED )
 include_directories( ${CERES_INCLUDES} )
 
 # Check that OPENCV is available
 set(NO_OPENCV_GPU TRUE)
 find_package( OpenCV QUIET )
-find_package( CVars QUIET )
+find_package( CVars REQUIRED )
 
 option(BUILD_CALIBGRID OFF "Toggle build calibgrid.")
 if( Pangolin_FOUND AND Ceres_FOUND AND OpenCV_FOUND AND CVars_FOUND AND BUILD_CALIBGRID)

@@ -11,5 +11,5 @@ find_library(GLog_LIBRARIES NAMES glog)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(GLog DEFAULT_MSG GLog_INCLUDE_DIR GLog_LIBRARIES)
-set(GLOG_INCLUDE_DIRS ${GLog_INCLUDE_DIRS})
+set(GLOG_INCLUDE_DIRS ${GLog_INCLUDE_DIR})
 set(GLOG_LIBRARIES ${GLog_LIBRARIES})
