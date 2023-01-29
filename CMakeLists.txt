@@ -134,8 +134,11 @@ list( APPEND CALIBU_INC
     ${CMAKE_BINARY_DIR}
     )
 
+get_target_property(Sophus_INCLUDE_DIRS Sophus::Sophus INTERFACE_INCLUDE_DIRECTORIES)
 list( APPEND USER_INC   ${EIGEN3_INCLUDE_DIR} )
 list( APPEND USER_INC   ${Sophus_INCLUDE_DIRS} )
+list( APPEND USER_INC   ${GLOG_INCLUDE_DIRS} )
+
 
 #######################################################
 ## Find optional dependencies
@@ -186,7 +189,7 @@ configure_file(
 #list( APPEND HEADERS "${CMAKE_CURRENT_BINARY_DIR}/include/${LIBRARY_NAME}/config.h" )
 
 # Include source/build directories first to preempt any installed Calibu
-include_directories( ${CALIBU_INC} ${USER_INC} ${CMAKE_CURRENT_BINARY_DIR}/include )
+# include_directories(${CALIBU_INC} ${USER_INC} ${CMAKE_CURRENT_BINARY_DIR}/include )
 
 if( BUILD_MATLAB )
   add_subdirectory( matlab )
@@ -194,7 +197,14 @@ endif()
 
 # build calibu library
 add_library( calibu ${SOURCES} )
-target_link_libraries( calibu ${LINK_LIBS} )
+target_link_libraries( calibu ${LINK_LIBS})
+target_include_directories(calibu PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  ${CALIBU_INC}
+  ${USER_INC}
+  ${CMAKE_INSTALL_PREFIX}/Calibu/include
+  $<INSTALL_INTERFACE:include>
+)
 
 # install everything
 install_package(
